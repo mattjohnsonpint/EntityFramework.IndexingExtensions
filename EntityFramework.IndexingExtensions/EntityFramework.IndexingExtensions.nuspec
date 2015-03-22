@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>EntityFramework.IndexingExtensions</id>
+    <version>$version$</version>
+    <title>Entity Framework Indexing Extensions</title>
+    <authors>$author$</authors>
+    <description>$description$</description>
+    <language>en-US</language>
+    <licenseUrl>https://raw.githubusercontent.com/mj1856/TimeZoneNames/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mj1856/EntityFramework.IndexingExtensions</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>EF Entity Framework Indexing Indexes Index</tags>
+    <dependencies>
+      <dependency id="EntityFramework" version="6.1.0" />
+    </dependencies>
+  </metadata>
+</package>
