@@ -26,3 +26,7 @@ public class MyDataContext : DbContext
   }
 }
 ```
+
+### Notes
+
+After publishing this, I was informed that there is an active pull request [here](https://entityframework.codeplex.com/SourceControl/network/forks/BrandonDahler/EntityFramework/contribution/7954) to add something similar directly into Entity Framework.  Therefore, this project will likely be short-lived.  Feel free to use it as you like, but I'll probably take it offline after the official version is published.
