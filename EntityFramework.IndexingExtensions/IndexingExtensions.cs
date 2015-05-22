@@ -65,7 +65,7 @@ namespace System.Data.Entity
                 IsUnique = indexOptions.HasFlag(IndexOptions.Unique)
             };
 
-            propertyConfiguration.HasColumnAnnotation("Index", new IndexAnnotation(indexAttribute));
+            propertyConfiguration.HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(indexAttribute));
         }
     }
 }
