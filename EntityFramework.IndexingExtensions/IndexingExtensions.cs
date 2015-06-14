@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
+using System.Linq;
+using System.Reflection;
 
 namespace System.Data.Entity
 {
@@ -65,7 +68,37 @@ namespace System.Data.Entity
                 IsUnique = indexOptions.HasFlag(IndexOptions.Unique)
             };
 
-            propertyConfiguration.HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(indexAttribute));
+            var annotation = GetIndexAnnotation(propertyConfiguration);
+            if (annotation != null)
+            {
+                var attributes = annotation.Indexes.ToList();
+                attributes.Add(indexAttribute);
+                annotation = new IndexAnnotation(attributes);
+            }
+            else
+            {
+                annotation = new IndexAnnotation(indexAttribute);
+            }
+
+            propertyConfiguration.HasColumnAnnotation(IndexAnnotation.AnnotationName, annotation);
+        }
+
+        private static IndexAnnotation GetIndexAnnotation(PrimitivePropertyConfiguration propertyConfiguration)
+        {
+            var configuration = typeof (PrimitivePropertyConfiguration)
+                .GetProperty("Configuration", BindingFlags.Instance | BindingFlags.NonPublic)
+                .GetValue(propertyConfiguration, null);
+
+            var annotations = (IDictionary<string, object>) configuration.GetType()
+                .GetProperty("Annotations", BindingFlags.Instance | BindingFlags.Public)
+                .GetValue(configuration, null);
+
+            object annotation;
+            if (!annotations.TryGetValue(IndexAnnotation.AnnotationName, out annotation))
+                return null;
+
+            return annotation as IndexAnnotation;
+
         }
     }
 }
