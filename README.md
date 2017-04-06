@@ -1,4 +1,4 @@
-# EntityFramework.IndexingExtensions
+# EntityFramework.IndexingExtensions  [![NuGet Version](https://img.shields.io/nuget/v/EntityFramework.IndexingExtensions.svg?style=flat)](https://www.nuget.org/packages/EntityFramework.IndexingExtensions/) 
 Indexing Extensions for Entity Framework 6
 
 
